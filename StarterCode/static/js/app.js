@@ -8,6 +8,7 @@ function get_data(id) {
     var meta = meta_Data.filter(samp => samp.id == id)[0];
     buildChart(sample);
     buildDemoChart(meta);
+    createBubble(sample);
   });
 }
 
@@ -26,16 +27,7 @@ function buildChart(sample) {
     text: sample.otu_labels.slice(0, 10).reverse(),
     type: "bar",
     orientation: "h"
-
-    // all data needed for the bubble chart comes in on sample
-    // no slices/reverses
-    // use pre-existing variables w/ the added "bubble"
-    // call plotly.bubble
-    // the 1st argument is the id that you want to attached to (get from the html)
-    // color scale is "Earth" <-- call in from plotly
   };
-
-
 
   var data = [trace1];
 
@@ -46,6 +38,7 @@ function buildChart(sample) {
   };
 
   Plotly.newPlot("bar", data, layout);
+
 
 };
 
@@ -62,7 +55,7 @@ function init() {
 
 }
 
-function createBubble(sample, name) {
+function createBubble(sample) {
   console.log(sample.otu_ids)
   var trace1 = {
       x: sample.otu_ids,
@@ -81,7 +74,7 @@ function createBubble(sample, name) {
       height: 600,
       width: 600
     };
-    Plotly.newPlot('#bubble', data, layout);
+    Plotly.newPlot('bubble', data, layout);
 }
 
 function optionChanged(sampleNumber) {
