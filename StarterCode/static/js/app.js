@@ -63,16 +63,29 @@ function createBubble(sample) {
       text: sample.sample_values.map(samp_values =>`size:${samp_values}`),
       mode: 'markers',
       marker: {
-        color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-        size: [40, 60, 80, 100]
+        size: [40, 60, 80, 100],
+        color: [10, 20, 40, 50],
+        cmin: 0,
+        cmax: 50,
+        colorscale: 'Earth',
       }
   } 
     var data = [trace1];
     var layout = {
-      title: 'Bubble Chart Hover Text',
+      title: 'OTUs vs Sample Values',
+      xaxis: {
+        title: {
+          text: 'OTU Ids',
+          },
+        },
+      yaxis: {
+        title: {
+          text: 'Sample Values',
+          },
+        },
       showlegend: false,
       height: 600,
-      width: 600
+      width: 600,
     };
     Plotly.newPlot('bubble', data, layout);
 }
